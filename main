@@ -1,0 +1,77 @@
+
+import java.util.ArrayList;
+import java.util.Stack;
+import java.util.List;
+import java.util.Scanner;
+
+//METODO RADIX CON LISTAS
+public class U5E6 {
+    public static void main(String[] args) {
+       
+        Scanner sn=new Scanner(System.in);
+        
+       U5E6 obj=new U5E6();
+      
+        List <Integer>numeros=new Stack<>();       
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Dame los elementos a ordenar:");
+            int elemento=sn.nextInt();
+            numeros.add(elemento);
+        }  
+        System.out.println("Lista ordenada:");
+        radix(numeros); 
+        //obj.mostrar(numeros);
+        /*for(int j=0;j<numeros.size();j++){
+          System.out.print(numeros.get(j)+" ");
+      }*/
+        //System.out.println(numeros);
+        
+
+       
+         //System.out.println("Lista ordenada:");
+         //obj.radix(arreglo); 
+         //obj.mostrar(arreglo);
+         /*for(int j=0;j<arreglo.length;j++){
+          System.out.print(arreglo);
+      }*/
+        
+    }//main
+   
+    public static void radix(List <Integer>numeros){
+      
+        int x,i,j;
+        for (x = Integer.SIZE-1; x< numeros.size(); x--) {
+            //int aux[]=new int[numeros.size()];
+            
+            List <Integer>aux=new Stack<>();
+            j=0;
+            for ( i = 0; i <numeros.size(); i++) {
+                boolean mover=numeros.get(i)<<x>=0;
+                if (x==0 ? !mover:mover) {
+                    aux.add(numeros.get(i));
+                    j++;
+                }else{
+                    numeros.set(i-j,numeros.get(i));
+                }
+            }
+            for (i = j; i < aux.size(); i++) {
+                aux.add(numeros.get(i-j));
+            }
+            numeros=aux;
+        }
+        
+        System.out.println("ordenado:");
+        for (i = 0; i <numeros.size(); i++) {
+            System.out.println(numeros.get(i));
+        }
+  
+    }
+    /*
+    
+  public void mostrar(List<Integer> numeros){
+        for (int  i = 0; i <numeros.size(); i++) {
+            System.out.println(numeros);            
+        }
+    }*/
+   
+}//class
